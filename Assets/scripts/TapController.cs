@@ -64,35 +64,32 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 		
 		switch (adToLoad) {
 			case 0:
-				Toast.show("loading Interstitial ad with custom loader and onCompletion  freq cap 15 sec ");
+				Toast.show("loading Interstitial ad with custom loader and onCompletion  freq cap 5 sec ");
 				LoaderSettings loader = new LoaderSettings();
-				loader.setLogoResID();
-				AndroidJavaObject placementObject1 = AdPlacementBuilder.Interstitial()
+				loader.setLogoResID("com.unity3d.player.UnityPlayer");
+				AdPlacementBuilder placement = AdPlacementBuilder.Interstitial()
 					.name("unity_Interstitial_full")
 					.showLoaderTillAdIsReady(true)
 					.loaderTimeOutInSeconds(5)
-					.frequencyCapInSeconds(15)
+					.frequencyCapInSeconds(5)
 					.loaderUISetting(loader)
-					.onAdCompletion( this.onAdCompletion )
-					.build();
-				DisplayManager.Instance.showAd(placementObject1);
+					.onAdCompletion( this.onAdCompletion );
+				DisplayManager.Instance.showAd(placement);
 				break;
 			case 1:
-				Toast.show("loading simple Interstitial ad  freq cap 15 sec ");
-				AndroidJavaObject placementObject2 = AdPlacementBuilder.Interstitial()
+				Toast.show("loading simple Interstitial ad  freq cap 5 sec ");
+				AdPlacementBuilder placement2 = AdPlacementBuilder.Interstitial()
 					.name("unity_Interstitial_simple")
-					.frequencyCapInSeconds(15)
-					.build();
-				DisplayManager.Instance.showAd(placementObject2);
+					.frequencyCapInSeconds(5);
+				DisplayManager.Instance.showAd(placement2);
 				break;
 			case 2:
 				Toast.show("loading Reward ad");
-				AndroidJavaObject placementObject3 = AdPlacementBuilder.Rewarded()
+				AdPlacementBuilder placement3 = AdPlacementBuilder.Rewarded()
 					.name("unity_Reward")
 					.loaderTimeOutInSeconds(5)
-					.onAdCompletion( this.onRewardAdCompletion )
-					.build();
-				DisplayManager.Instance.showAd(placementObject3);
+					.onAdCompletion( this.onRewardAdCompletion );
+				DisplayManager.Instance.showAd(placement3);
 				break;
 			case 3:
 				// Native ad

@@ -3,26 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace AdPumbPlugin {
-
-    public sealed class AdPumb {
-        private static bool isAdInitialized = false;
-        private static string unityActivityName = "com.unity3d.player.UnityPlayer";
-        public static string getUnityActivityName(){
-            return unityActivityName;
-        }
-        public static void register(bool isDebug){
-            if(isAdInitialized){
-                return;
-            }
-            isAdInitialized = true;
-            #if UNITY_ANDROID
-            AndroidJavaClass unityActivity = new AndroidJavaClass(getUnityActivityName());
-            AndroidJavaClass adPumbClass = new AndroidJavaClass("com.adpumb.lifecycle.Adpumb");
-            adPumbClass.CallStatic("register", new object[] { unityActivity.GetStatic<AndroidJavaObject>("currentActivity") , isDebug });
-            Debug.Log(" adpumb registered ");
-            #endif
-        }
-    }
     public class DisplayManager{
         private static readonly DisplayManager instance = new DisplayManager();
         #if UNITY_ANDROID
@@ -38,9 +18,9 @@ namespace AdPumbPlugin {
             // DisplayManagerClass = new AndroidJavaClass("com.adpumb.ads.display.DisplayManager");
             #endif
         }
-        public void showAd(AndroidJavaObject PlacementObject){
+        public void showAd(AdPlacementBuilder placementBuilder){
             #if UNITY_ANDROID
-            DisplayManagerClass.CallStatic<AndroidJavaObject>("getInstance").Call("showAd",PlacementObject);
+            DisplayManagerClass.CallStatic<AndroidJavaObject>("getInstance").Call("showAd",placementBuilder.build());
             #endif
         }
     }
@@ -114,9 +94,9 @@ namespace AdPumbPlugin {
             LoaderSettingsObject = new AndroidJavaObject("com.adpumb.ads.display.LoaderSettings") ;
             #endif
         }
-        public void setLogoResID(){
+        public void setLogoResID(string activityName){
             #if UNITY_ANDROID
-            AndroidJavaObject unityActivity = new AndroidJavaClass(AdPumb.getUnityActivityName()).GetStatic<AndroidJavaObject>("currentActivity") ;
+            AndroidJavaObject unityActivity = new AndroidJavaClass(activityName).GetStatic<AndroidJavaObject>("currentActivity"); ////
             string packageName = unityActivity.Call<string>("getPackageName");
             AndroidJavaObject resource = unityActivity.Call<AndroidJavaObject>("getResources");
             int app_icon = resource.Call<int>("getIdentifier", new object[] { "app_icon", "mipmap", packageName } );

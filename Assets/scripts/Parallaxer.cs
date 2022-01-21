@@ -41,7 +41,6 @@ public class Parallaxer : MonoBehaviour {
 
 	void Start() {
 		game = GameManager.Instance;
-		AdPumbPlugin.AdPumb.register(false);
 	}
 
 	void OnEnable() {

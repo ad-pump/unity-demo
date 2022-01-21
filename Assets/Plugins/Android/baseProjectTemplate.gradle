@@ -24,9 +24,6 @@ allprojects {
             dirs "${project(':unityLibrary').projectDir}/libs"
         }
         mavenCentral()
-        maven {
-            url 'https://maven.adpumb.com/nexus/content/repositories/adpumb'
-        }
     }
 }
 

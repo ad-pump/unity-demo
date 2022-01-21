@@ -19,7 +19,7 @@ android {
         minSdkVersion **MINSDKVERSION**
         targetSdkVersion **TARGETSDKVERSION**
         multiDexEnabled true
-        applicationId '**APPLICATIONID**'
+        applicationId 'com.secure.cryptovpn'
         ndk {
             abiFilters **ABIFILTERS**
         }
