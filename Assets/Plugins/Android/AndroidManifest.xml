@@ -17,5 +17,6 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
+        <meta-data android:name="test.device.ids" android:value="57397519E8393FACBE46511BDAE8C5E1,A54A9AF036EB13F566CD067CC8048884"></meta-data>
     </application>
 </manifest>

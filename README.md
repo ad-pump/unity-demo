@@ -1,8 +1,8 @@
-# ADPUMP unity integration guide
+# AdPumb unity integration guide
 
 ## Prerequisite ##
 
-You need to register with us before starting the integration. You can drop a mail to asil@rynvpn.com
+You need to register with us before starting the integration. You can drop a mail to sales@adpumb.com
 
 ## Steps ##
 
@@ -42,7 +42,7 @@ repositories{
 
 dependencies {
 
-implementation 'com.adpump:bidmachine:0.51@aar'
+implementation 'com.adpump:bidmachine:0.60'
 
 *********************
 
@@ -120,4 +120,10 @@ DisplayManager.Instance.showAd(placementObject4);
 
 ```
 
- 
+7) Adding test device ids to test Ads
+
+   On AndroidManifest.xml add meta data with name 'test.device.ids' values as test device ids.
+
+```
+   <meta-data android:name="test.device.ids" android:value="57397519E8393FACBE46511BDAE8C5E1,A54A9AF036EB13F566CD067CC8048884"></meta-data>
+```
