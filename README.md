@@ -27,8 +27,8 @@ You need to register with us before starting the integration. You can drop a mai
 
   
 
-```
-Add these ( repository and dependency )  to you mainTemplate.gradle file ( located in **Assets > Plugins > Android** )  of your app
+Add repository to you baseProjectTemplate.gradle file ( located in **Assets > Plugins > Android** )  of your app
+
 ```gradle
 
 repositories{
@@ -37,16 +37,33 @@ repositories{
     }
 }
 
-.....
+```
+
+Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins > Android** )  of your app
+
+```gradle
 
 
 dependencies {
 
-implementation 'com.adpump:bidmachine:0.60'
+implementation 'com.adpumb:bidmachine:0.60'
 
 *********************
 
+```
 
+Also needed to activate AndroidX and enable Jetifier in **gradleTemplate.properties** file and enable **multiDex** 
+```gradle
+android.useAndroidX=true
+android.enableJetifier=true
+```
+in **launcherTemplate.gradle**
+```gradle
+    defaultConfig {
+        .....
+        multiDexEnabled true
+        .....
+    }
 ```
 
 2) Create a Folder **AdPumb** in **Assets > Plugins** then copy contents from With [**THIS FILE**](https://raw.githubusercontent.com/ad-pump/unity-demo/main/Assets/Plugins/AdPumb/AdPumbPlugin.cs)  to a C# Script file **AdPumbPlugin.cs** .
