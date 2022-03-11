@@ -17,6 +17,8 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
-        <meta-data android:name="test.device.ids" android:value="57397519E8393FACBE46511BDAE8C5E1,A54A9AF036EB13F566CD067CC8048884"></meta-data>
+        <meta-data
+                android:name="com.adpumb.config.key"
+                android:value="adpumb-test,AIzaSyAx4dxazFButNiZU4_rXT8hgaJNSREfmrw,1:693299279464:android:07e16d50af2a5719e6addd" />
     </application>
 </manifest>

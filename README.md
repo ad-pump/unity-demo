@@ -46,7 +46,7 @@ Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins >
 
 dependencies {
 
-implementation 'com.adpumb:bidmachine:0.60'
+implementation 'com.adpumb:bidmachine:1.3.1'
 
 *********************
 
@@ -66,9 +66,21 @@ in **launcherTemplate.gradle**
     }
 ```
 
-2) Create a Folder **AdPumb** in **Assets > Plugins** then copy contents from With [**THIS FILE**](https://raw.githubusercontent.com/ad-pump/unity-demo/main/Assets/Plugins/AdPumb/AdPumbPlugin.cs)  to a C# Script file **AdPumbPlugin.cs** .
+2) Adding config key to AndroidManifest
 
-3) Create placement: Adpump is designed on the concept of placement rather than adunit. A placement is a predefined action sequence which ends up in showing an Ad. 
+   On AndroidManifest.xml add meta data with name 'com.adpumb.config.key' values given by us.
+
+```
+   <meta-data 
+   android:name="com.adpumb.config.key" 
+   android:value="adpumb,AIzaSyBdR63r0eiZi6_wvGNlToNnVfVCm7sffwk,1:476641212837:android:440c356d4a9858bcda904c" />
+    
+```
+
+
+3) Create a Folder **AdPumb** in **Assets > Plugins** then copy contents from With [**THIS FILE**](https://raw.githubusercontent.com/ad-pump/unity-demo/main/Assets/Plugins/AdPumb/AdPumbPlugin.cs)  to a C# Script file **AdPumbPlugin.cs** .
+
+4) Create placement: Adpump is designed on the concept of placement rather than adunit. A placement is a predefined action sequence which ends up in showing an Ad. 
 
 ```c#
 AdPlacementBuilder placementObject1 = AdPlacementBuilder.Interstitial()
@@ -81,7 +93,7 @@ DisplayManager.Instance.showAd(placementObject1);
 
 In this example if the ad is not ready within 5 seconds then the loader will be removed. However if the ad is already loaded or it got loaded while the loader is shown, then ad loader will be hidden and ad will be shown to user.
 
-4) For a particular placement you need to create only one placement object, which can be used to show multiple ads.
+5) For a particular placement you need to create only one placement object, which can be used to show multiple ads.
 
 For example:
 
@@ -99,7 +111,7 @@ DisplayManager.Instance.showAd(placementObject2);
 DisplayManager.Instance.showAd(placementObject2);
 ```
 
-5) Callbacks: You can register callbacks to the placement
+6) Callbacks: You can register callbacks to the placement
 
 ```c#
 AdPlacementBuilder placementObject3 = AdPlacementBuilder.Interstitial()
@@ -121,7 +133,7 @@ public void onAdCompletion(bool success){
 }
 ```
 
-6) Customising loader : You can customize the loader using the loader settings for each placement
+7) Customising loader : You can customize the loader using the loader settings for each placement
 
 ```c#
 LoaderSettings loader = new LoaderSettings();
@@ -137,10 +149,3 @@ DisplayManager.Instance.showAd(placementObject4);
 
 ```
 
-7) Adding test device ids to test Ads
-
-   On AndroidManifest.xml add meta data with name 'test.device.ids' values as test device ids.
-
-```
-   <meta-data android:name="test.device.ids" android:value="57397519E8393FACBE46511BDAE8C5E1,A54A9AF036EB13F566CD067CC8048884"></meta-data>
-```
