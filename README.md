@@ -46,7 +46,7 @@ Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins >
 
 dependencies {
 
-implementation 'com.adpumb:bidmachine:1.3.4'
+implementation 'com.adpumb:bidmachine:1.3.6'
 
 *********************
 
