@@ -107,7 +107,7 @@ namespace AdPumbPlugin {
             return LoaderSettingsObject;
         }
     }
-    public delegate void AdCompletionDelegate (bool success);
+    public delegate void AdCompletionDelegate (bool success,bool isAdFailed);
     class AdPumbPluginAdCompletionCallbackProxy : AndroidJavaProxy {
         AdCompletionDelegate deligate;
         public void setCallback( AdCompletionDelegate callback2 ){
@@ -116,11 +116,12 @@ namespace AdPumbPlugin {
         public AdPumbPluginAdCompletionCallbackProxy() : base("com.adpumb.ads.display.AdCompletion") { }
 
         public void onAdCompletion(bool success, AndroidJavaObject placementDisplayStatus) {
-            Debug.Log(" AdPumbPluginAdCompletionCallbackProxy " );
-            deligate(success);
+            string displayStatus =   placementDisplayStatus.Call<string>("name");
+            Debug.Log(" AdPumbPluginAdCompletionCallbackProxy "+success+" - "+displayStatus );
+            deligate(success,displayStatus=="NO_AD_AVAILABLE");
         }
     }
     public interface AdCompletion{
-        public void onAdCompletion(bool success);
+        public void onAdCompletion(bool success,bool isAdFailed);
     }  
 }

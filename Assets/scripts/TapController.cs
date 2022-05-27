@@ -95,12 +95,14 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 
 	}
 
-	public void onAdCompletion(bool success){  
+	public void onAdCompletion(bool success,bool isAdFailed){  
 		// ad  completion
+		Debug.Log(" interstitial ad complete "+success+" - "+isAdFailed );
 	}
 
-	public void onRewardAdCompletion(bool success){   
+	public void onRewardAdCompletion(bool success,bool isAdFailed){   
 		// reward ad completion
+		Debug.Log(" reward ad complete "+success+" - "+isAdFailed );
 	}
 
 	void Update() {
