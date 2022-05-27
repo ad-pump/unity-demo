@@ -46,7 +46,7 @@ Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins >
 
 dependencies {
 
-implementation 'com.adpumb:bidmachine:1.3.7'
+implementation 'com.adpumb:bidmachine:1.6.0'
 
 *********************
 
@@ -73,7 +73,7 @@ in **launcherTemplate.gradle**
 ```
    <meta-data 
    android:name="com.adpumb.config.key" 
-   android:value="adpumb,AIzaSyBdR63r0eiZi6_wvGNlToNnVfVCm7sffwk,1:476641212837:android:440c356d4a9858bcda904c" />
+   android:value="adpumb-test,AIzaSyAx4dxazFButNiZU4_rXT8hgaJNSREfmrw,1:693299279464:android:07e16d50af2a5719e6addd" />
     
 ```
 
@@ -124,8 +124,10 @@ DisplayManager.Instance.showAd(placementObject3);
 
 ......... 
 
-public void onAdCompletion(bool success){ 
-    if(isSuccess){ 
+public void onAdCompletion(bool success,bool isAdFailed){ 
+    if(isAdFailed){
+    // ad failed to load
+    } else if(isSuccess){ 
     // watched ad
     } else {
     // Didn't watched the ad
