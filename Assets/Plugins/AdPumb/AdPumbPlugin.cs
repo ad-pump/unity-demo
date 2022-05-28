@@ -117,7 +117,6 @@ namespace AdPumbPlugin {
 
         public void onAdCompletion(bool success, AndroidJavaObject placementDisplayStatus) {
             string displayStatus =   placementDisplayStatus.Call<string>("name");
-            Debug.Log(" AdPumbPluginAdCompletionCallbackProxy "+success+" - "+displayStatus );
             deligate(success,displayStatus=="NO_AD_AVAILABLE");
         }
     }
