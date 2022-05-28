@@ -71,7 +71,7 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 					.name("unity_Interstitial_full")
 					.showLoaderTillAdIsReady(true)
 					.loaderTimeOutInSeconds(5)
-					.frequencyCapInSeconds(5)
+					//.frequencyCapInSeconds(5)
 					.loaderUISetting(loader)
 					.onAdCompletion( this.onAdCompletion );
 				DisplayManager.Instance.showAd(placement);
@@ -80,7 +80,8 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 				// loading simple Interstitial ad  freq cap 5 sec 
 				AdPlacementBuilder placement2 = AdPlacementBuilder.Interstitial()
 					.name("unity_Interstitial_simple")
-					.frequencyCapInSeconds(5);
+					.frequencyCapInSeconds(5)
+					.onAdCompletion( this.onAdCompletion2 );
 				DisplayManager.Instance.showAd(placement2);
 				break;
 			case 2:
@@ -97,12 +98,17 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 
 	public void onAdCompletion(bool success,bool isAdFailed){  
 		// ad  completion
-		Debug.Log(" interstitial ad complete "+success+" - "+isAdFailed );
+		Toast.show(" unity_Interstitial_full : "+success+" - isAdFailed : "+isAdFailed );
+	}
+
+	public void onAdCompletion2(bool success,bool isAdFailed){  
+		// ad  completion
+		Toast.show(" unity_Interstitial_simple : "+success+" - isAdFailed : "+isAdFailed );
 	}
 
 	public void onRewardAdCompletion(bool success,bool isAdFailed){   
 		// reward ad completion
-		Debug.Log(" reward ad complete "+success+" - "+isAdFailed );
+		Toast.show(" unity_Reward : "+success+" - isAdFailed : "+isAdFailed );
 	}
 
 	void Update() {
