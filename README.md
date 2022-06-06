@@ -33,6 +33,9 @@ Add repository to you baseProjectTemplate.gradle file ( located in **Assets > Pl
 
 repositories{
     maven {
+        url 'https://maven.adpumb.com/sdk/'
+    }
+    maven {
         url 'https://maven.adpumb.com/repository/adpumb/'
     }
 }
@@ -46,7 +49,7 @@ Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins >
 
 dependencies {
 
-implementation 'com.adpumb:bidmachine:1.6.0'
+implementation 'com.adpumb:bidmachine:1.6.6'
 
 *********************
 
