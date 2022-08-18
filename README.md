@@ -46,7 +46,7 @@ Add dependency to you mainTemplate.gradle file ( located in **Assets > Plugins >
 
 dependencies {
 
-implementation 'com.adpumb:bidmachine:1.7.2'
+implementation 'com.adpumb:bidmachine:1.7.7'
 
 *********************
 
@@ -73,7 +73,7 @@ in **launcherTemplate.gradle**
 ```
    <meta-data 
    android:name="com.adpumb.config.key" 
-   android:value="adpumb-test,AIzaSyAx4dxazFButNiZU4_rXT8hgaJNSREfmrw,1:693299279464:android:07e16d50af2a5719e6addd" />
+   android:value="adpumb-key-goes-here" />
     
 ```
 
