@@ -6,7 +6,7 @@ apply plugin: 'com.android.library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.multidex:multidex:2.0.1'
-    implementation 'com.adpumb:bidmachine:1.7.7'
+    implementation 'com.adpumb:bidmachine:2.0.9'
 **DEPS**}
 
 android {
