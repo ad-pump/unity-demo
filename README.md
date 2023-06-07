@@ -151,3 +151,16 @@ DisplayManager.Instance.showAd(placementObject4);
 
 ```
 
+8) Analytics : event with impression info
+
+```c#
+	ExternalAnalytics.Instance.onEvent(this.AdPumbAnalyticsEvent);
+```
+	
+```c#
+	void AdPumbAnalyticsEvent(string placement,float eCPM){
+		Debug.Log(" placement : "+placement+" - eCPM : "+eCPM );
+	}
+
+```
+
