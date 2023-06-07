@@ -34,7 +34,11 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 		game = GameManager.Instance;
 		rigidBody.simulated = false;
 		//trail = GetComponent<TrailRenderer>();
-		//trail.sortingOrder = 20; 
+		//trail.sortingOrder = 20;
+		ExternalAnalytics.Instance.onEvent(this.AdPumbAnalyticsEvent);
+	}
+	void AdPumbAnalyticsEvent(string placement,float eCPM){
+		Debug.Log(" placement : "+placement+" - eCPM : "+eCPM );
 	}
 
 	void OnEnable() {

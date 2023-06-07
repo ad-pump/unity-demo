@@ -87,6 +87,46 @@ namespace AdPumbPlugin {
             return null;
         }
     }
+    public class ExternalAnalytics{
+        private static readonly ExternalAnalytics instance = new ExternalAnalytics();
+        #if UNITY_ANDROID
+        AndroidJavaClass AdPumbConfigurationClass  = new AndroidJavaClass("com.adpumb.lifecycle.AdPumbConfiguration");
+        #endif
+        public static ExternalAnalytics Instance {  
+            get {  
+                return instance;  
+            }  
+        }
+        public ExternalAnalytics(){
+            #if UNITY_ANDROID
+            #endif
+        }
+        public void onEvent(AdPumbAnalyticsEventDelegate callBack2){
+            #if UNITY_ANDROID
+            AdPumbAnalyticsCallbackProxy obj = new AdPumbAnalyticsCallbackProxy();
+            obj.setCallback(callBack2);
+            AdPumbConfigurationClass.CallStatic<AndroidJavaObject>("getInstance").Call("setExternalAnalytics", new object[] { obj } );
+            #endif
+        }
+    }
+    public delegate void AdPumbAnalyticsEventDelegate (string Placement,float eCPM);
+    class AdPumbAnalyticsCallbackProxy : AndroidJavaProxy {
+        AdPumbAnalyticsEventDelegate deligate;
+        public void setCallback( AdPumbAnalyticsEventDelegate callback2 ){
+            deligate = callback2;
+        }
+        public AdPumbAnalyticsCallbackProxy() : base("com.adpumb.ads.analytics.AdPumbAnalyticsListener") { }
+
+        public void onEvent( AndroidJavaObject impressionData) {
+            if(deligate==null){
+                return;
+            }
+            string placement =   impressionData.Call<string>("getPlacementName");
+            float eCPM =  impressionData.Call<float>("getEcpm");
+            deligate(placement,eCPM);
+        }
+    }
+    //
     public class LoaderSettings{
         AndroidJavaObject LoaderSettingsObject;
         public LoaderSettings(){
