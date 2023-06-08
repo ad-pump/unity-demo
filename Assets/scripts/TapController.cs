@@ -64,7 +64,7 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 
 	void showAd(){
 		adCount++;
-		int adToLoad = adCount %3;
+		int adToLoad = adCount %5;
 		
 		switch (adToLoad) {
 			case 0:
@@ -94,6 +94,20 @@ public class TapController : MonoBehaviour , AdPumbPlugin.AdCompletion {
 					.loaderTimeOutInSeconds(5)
 					.onAdCompletion( this.onRewardAdCompletion );
 				DisplayManager.Instance.showAd(placement3);
+				break;
+			case 3:
+				AdPlacementBuilder placement4 = AdPlacementBuilder.AppOpenInterstitial()
+					.name("unity_AppOpenInterstitial")
+					.loaderTimeOutInSeconds(5)
+					.onAdCompletion( this.onRewardAdCompletion );
+				DisplayManager.Instance.showAd(placement4);
+				break;
+			case 4:
+				AdPlacementBuilder placement5 = AdPlacementBuilder.RewardedInterstitial()
+					.name("unity_RewardedInterstitial")
+					.loaderTimeOutInSeconds(5)
+					.onAdCompletion( this.onRewardAdCompletion );
+				DisplayManager.Instance.showAd(placement5);
 				break;
 		}
 
